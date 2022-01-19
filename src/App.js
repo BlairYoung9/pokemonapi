@@ -1,5 +1,6 @@
 import './App.css';
 import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 
 
 
@@ -20,12 +21,21 @@ function App() {
 
   }
 
+  const axiosPokemon = () => {
+    axios.get("https://pokeapi.co/api/v2/pokemon")
+    .then(res => {
+      console.log(res.data)
+      setPokemon(res.data.results)
+    })
+    .catch(err => console.log(err))
+    }
 
   return (
     <div className="App">
       <h2>Pokemon</h2>
 
       <button onClick={fetchPokemon}>Fetch</button>
+      <button onClick={axiosPokemon}> AXIOS pokemon</button>
       <hr />
       <table>
         <thead>
